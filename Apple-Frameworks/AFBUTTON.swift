@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct AFBUTTON: View {
+    var title: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(title)
+            .font(.title2)
+            .fontWeight(.semibold)
+            .frame(width: 250, height: 50)
+            .foregroundColor(.white)
+            .background(.red)
+            .cornerRadius(10)
     }
 }
 
 struct AFBUTTON_Previews: PreviewProvider {
     static var previews: some View {
-        AFBUTTON()
+        AFBUTTON(title: "Test")
     }
 }
