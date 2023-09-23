@@ -11,23 +11,12 @@ struct FrameworkDetailView: View {
     
     var framework: Framework
     @Binding var isShowingDetailView: Bool // binding makes isShowingDetailView equal to what ever it is in the parent view which is gridView
+    @State private var isShowingSafariView = false
     
     var body: some View {
        
         VStack {
-            HStack{
-                Spacer()
-                
-                Button {
-                    isShowingDetailView = false
-                }label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(Color(.label))
-                        .imageScale(.large)
-                        .frame(width: 44,height: 44)
-                }//: Button
-            }//: HStack
-            .padding()
+         XDismissButton(isShowingView: $isShowingDetailView)
             
             Spacer()
             
@@ -40,11 +29,14 @@ struct FrameworkDetailView: View {
             Spacer()
             
             Button{
-                
+                isShowingSafariView = true
             }label: {
                AFBUTTON(title: "Learn More")
             }//: Button
         }//: VStack
+        .sheet(isPresented: $isShowingSafariView) {
+            SafariView(url: URL(string: framework.urlString)!)
+        }
     }
 }
 
